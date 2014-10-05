@@ -62,3 +62,16 @@ class Datashack < Host
         super()
     end
 end
+
+class Colocrossing < Host
+    def initialize
+        @quality = 40
+        @uptime = 95
+        @dos_chance = 6
+        @shit_chance = 10
+        @glamour = 30
+        @cost = 40
+
+        super()
+    end
+end
