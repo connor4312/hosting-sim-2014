@@ -53,11 +53,16 @@ class Customer
         end
     end
 
+    def do_tickets
+        @@app.update "tickets", [@@app.get("tickets") - 10, 0].max
+    end
+
     def tick
         options = {
             "Post on MinecraftForums. (+1 Day)" => Proc.new{ promote() },
             "Promote on social media. (+1 Day)" => Proc.new{ promote() },
             "Buy advertisements online. (+1 Day, -10% Cash)" => Proc.new{ advertise() },
+            "Do tickets. (+1 Day, -10 Tickets)" => Proc.new{ do_tickets() }
         }
         @@app.push_screen "What do you want to do for your customers?", options
 
@@ -71,7 +76,7 @@ class Customer
                 end
             end
 
-            if @@app.get("clients") > 0 and (@@app.get("satisfaction").to_f * rand()) < 0.5
+            if @@app.get("satisfaction").to_f * rand() < 0.25
                 @clients.delete client
                 @@app.add "clients", -1
 
@@ -80,6 +85,13 @@ class Customer
                     "Concede to the chargeback. (-$#{@@money_per_client})" => Proc.new{ give_chargeback() }
                 }
             end
+
+            if rand() < (1.0 / 20.0)
+                @@app.add "tickets", 1
+            end
         end
+
+        @@app.normalize_to "satisfaction", 0, @@app.get("tickets").to_f / 10
+        @@app.normalize_to "glamour", 0, @@app.get("tickets").to_f / 15
     end
 end

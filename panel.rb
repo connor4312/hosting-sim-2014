@@ -29,7 +29,7 @@ class Multicraft < Panel
         @quality = 85
         @glamour = 75
         @cost = 15
-        @haxed = if rand() > 0.25 then (rand() * 30).floor else -1 end
+        @haxed = if rand() > 0.25 then 15 + (rand() * 30.0).floor else -1 end
 
         super()
     end
