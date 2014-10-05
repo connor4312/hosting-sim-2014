@@ -41,6 +41,12 @@ class Customer
         @@app.add "day", 1
     end
 
+    def nothing
+        @@app.add "satisfaction", -5
+        
+        @@app.add "day", 1
+    end
+
     def give_chargeback
         @@app.add "money", -@@money_per_client
     end
@@ -62,7 +68,8 @@ class Customer
             "Post on MinecraftForums. (+1 Day)" => Proc.new{ promote() },
             "Promote on social media. (+1 Day)" => Proc.new{ promote() },
             "Buy advertisements online. (+1 Day, -10% Cash)" => Proc.new{ advertise() },
-            "Do tickets. (+1 Day, -10 Tickets)" => Proc.new{ do_tickets() }
+            "Do tickets. (+1 Day, -10 Tickets)" => Proc.new{ do_tickets() },
+            "Do homework. (+1 Day, -5% Satisfaction)" => Proc.new{ noothing() }
         }
         @@app.push_screen "What do you want to do for your customers?", options
 
