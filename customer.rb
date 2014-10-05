@@ -66,11 +66,13 @@ class Customer
                 if (@@app.get("satisfaction").to_f / 100) > rand()
                     @@app.add "money", @@money_per_client
                 else
+                    @clients.delete client
                     @@app.add "clients", -1
                 end
             end
 
-            if @@app.get("clients") > 0 and (@@app.get("satisfaction").to_f / 100) < rand() / 10
+            if @@app.get("clients") > 0 and (@@app.get("satisfaction").to_f * rand()) < 0.5
+                @clients.delete client
                 @@app.add "clients", -1
 
                 @@app.push_screen "A client filed a chargeback against you. What do you want to do?", {

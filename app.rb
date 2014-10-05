@@ -13,6 +13,7 @@ class App
 
         @components = []
         @screens = []
+        @normalization = {}
         @props = {
             "money" => 100,
             "day" => 0,
@@ -55,14 +56,7 @@ class App
         @components.delete component
     end
 
-    def pass_day
-        @normalization = {}
-        @screens = []
-
-        @components.each do |component|
-            component.tick
-        end
-
+    def show_screens
         @screens.each do |screen|
             draw screen[0], screen[1]
         end
@@ -80,7 +74,7 @@ class App
         end
 
         @normalization.each do |key, normalizes|
-            total = normalizes.reduce(0) { |sum, obj| sum + obj[1] }
+            total = normalizes.reduce(1) { |sum, obj| sum + obj[1] }
             out = 0
             normalizes.each do |value|
                 out += value[0] * value[1] / total
@@ -89,6 +83,18 @@ class App
             @props[key] = out.round
         end
     end
+
+    def pass_day
+        @normalization = {}
+        @screens = []
+
+        @components.each do |component|
+            component.tick
+        end
+
+        show_screens()
+    end
+
 
     def output(line)
         out = wrap(line, @width).chomp
