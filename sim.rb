@@ -21,7 +21,7 @@ options = Hash.new
 options["Get a WHMCS license. (-$15 per month)"] = Proc.new{ app.add_component WHMCS.new }
 options["Pirate WHMCS. (-$0 per month)"] = Proc.new{ app.add_component WHMCS.new(true) }
 options["Get a Blesta license. (-$13 per month)"] = Proc.new{ app.add_component Blesta.new },
-options["Pirate Blesta. (-$0 per month)"] = Proc.new{ app.add_component WHMCS.new(true) }
+options["Pirate Blesta. (-$0 per month)"] = Proc.new{ app.add_component Blesta.new(true) }
 options["Process payments yourself. (-$0 per month)"] = Proc.new{ app.add_component SelfCash.new }
 app.push_screen "How are you going to handle billing?", options
 
