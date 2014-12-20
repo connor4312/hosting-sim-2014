@@ -14,6 +14,7 @@ options["Host from your home computer. (-$0 per month)"] = Proc.new{ app.add_com
 options["Order an OVH server. (-$42 per month)"] = Proc.new{ app.add_component OVH.new },
 options["Order a datashack server. (-$34 per month)"] = Proc.new{ app.add_component Datashack.new }
 options["Order a ColoCrossing server. (-$40 per month)"] = Proc.new{ app.add_component Colocrossing.new }
+options["Buy a Windows VPS from a shady guy from MCF. (-$8.99 per month)"] = Proc.new{ app.add_component MCF_WindowsVPS.new }
 app.push_screen "You are 14 years old and want to start a hosting company. You have $100. How do you begin?", options
 
 
