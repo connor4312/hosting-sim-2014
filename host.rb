@@ -63,6 +63,19 @@ class Datashack < Host
     end
 end
 
+class MCF_WindowsVPS < Host
+    def initialize
+        @quality = 16
+        @uptime = 42.7
+        @dos_chance = 9
+        @shit_chance = 20
+        @glamour = 12
+        @cost = 8.99
+
+        super()
+    end
+end
+
 class Colocrossing < Host
     def initialize
         @quality = 40
